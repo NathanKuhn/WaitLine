@@ -17,18 +17,11 @@ def main():
 
     board = Board(24, 24)
 
-<<<<<<< HEAD
     for _ in range(20):
         x = random.randrange(1, BOARD_WIDTH - 1)
         y = random.randrange(1, BOARD_WIDTH - 1)
         board.addTable(x, y)
     
-=======
-    board.addTable(3,4)
-    board.addTable(3,9)
-    board.addTable(15,3)
-
->>>>>>> 830cbda2b95c816afda64bf31c715f6b88a93411
     all_sprites_list.add(board.sprites())
 
     player = Player(board, 1, 1)
