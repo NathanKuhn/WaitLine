@@ -56,32 +56,32 @@ class Board(pygame.sprite.Group):
 
     def addTable(self, x, y):
 
-        if MAP[y][x] == 0:
+        if MAP[y][x] == 0 and self.elements[y][x] == 0:
             table = element.Table(x, y)
             self.elements[y][x] = table
             self.add(table)
 
-            if MAP[y-1][x] == 0:
+            if MAP[y-1][x] == 0 and self.elements[y-1][x] == 0:
                 chair = element.Chair(x,y-1)
                 self.elements[y-1][x] = chair
                 self.add(chair)
 
-            if MAP[y+1][x] == 0:
+            if MAP[y+1][x] == 0 and self.elements[y+1][x] == 0:
                 chair = element.Chair(x,y+1,180)
                 self.elements[y+1][x] = chair
                 self.add(chair)
 
-            if MAP[y][x+1] == 0:
+            if MAP[y][x+1] == 0 and self.elements[y][x+1] == 0:
                 chair = element.Chair(x+1,y,270)
                 self.elements[y][x+1] = chair
                 self.add(chair)
                 
-            if MAP[y][x-1] == 0:
+            if MAP[y][x-1] == 0 and self.elements[y][x-1] == 0:
                 chair = element.Chair(x-1,y,90)
                 self.elements[y][x-1] = chair
                 self.add(chair)
 
-    def checkCollision(self, x, y):
+    def checkCollision(self, x, y, ignoreElements=False):
        if (x < 0 or x >= len(MAP) or y < 0 or y >= len(MAP[0])):
               return True
-       return (MAP[y][x] != 0 or self.elements[y][x] != 0)
+       return (MAP[y][x] != 0 or (self.elements[y][x] != 0 and not ignoreElements))

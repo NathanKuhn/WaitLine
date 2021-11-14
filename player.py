@@ -32,6 +32,8 @@ class Player(pygame.sprite.Sprite):
         self.tickStartTime = pygame.time.get_ticks()
         self.rotation = 0
 
+        self.caffinated = True
+
     def updateStill(self):
         self.image = pygame.transform.rotate(PLAYER_TEXTURE_0, self.rotation)
         
@@ -40,7 +42,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (self.board.checkCollision(self.x + 1, self.y)):
+        if (self.board.checkCollision(self.x + 1, self.y, self.caffinated)):
             return
 
         if (currentTime - self.tickStartTime > 100):
@@ -54,7 +56,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (self.board.checkCollision(self.x - 1, self.y)):
+        if (self.board.checkCollision(self.x - 1, self.y, self.caffinated)):
             return
 
         if (currentTime - self.tickStartTime > 100):
@@ -68,7 +70,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (self.board.checkCollision(self.x, self.y - 1)):
+        if (self.board.checkCollision(self.x, self.y - 1, self.caffinated)):
             return
 
         if (currentTime - self.tickStartTime > 100):
@@ -83,7 +85,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (self.board.checkCollision(self.x, self.y + 1)):
+        if (self.board.checkCollision(self.x, self.y + 1, self.caffinated)):
             return
 
         if (currentTime - self.tickStartTime > 100):
