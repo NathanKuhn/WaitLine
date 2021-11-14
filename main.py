@@ -44,10 +44,12 @@ def main():
         elif (pygame.key.get_pressed()[pygame.K_s]):
             player.moveDown()
 
-        if (pygame.key.get_pressed()[pygame.K_d]):
+        elif (pygame.key.get_pressed()[pygame.K_d]):
             player.moveRight()
         elif (pygame.key.get_pressed()[pygame.K_a]):
             player.moveLeft()
+        else:
+            player.updateStill()
 
         all_sprites_list.draw(screen)
 
