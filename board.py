@@ -2,30 +2,16 @@ import pygame
 from gameMap import MAP
 
 TILE_IMAGE = pygame.image.load("tile.png")
+WALL_IMAGE = pygame.image.load("wall.png")
+WINDOW_IMAGE = pygame.image.load("window.png")
 
 class Tile(pygame.sprite.Sprite):
 
-    def __init__(self, x, y):
+    def __init__(self, image, x, y):
 
         super().__init__()
 
-        self.image = TILE_IMAGE
-        self.image.set_colorkey((0, 0, 0))
-        self.rect = self.image.get_rect()
-
-        self.speed = 0.1
-
-        self.rect.x = self.image.get_width() * x
-        self.rect.y = self.image.get_height() * y
-
-class Wall(pygame.sprite.Sprite):
-
-    def __init__(self, x, y):
-
-        super().__init__()
-
-        self.image = pygame.Surface([32, 32])
-        self.image.fill((0, 0, 0))
+        self.image = image
         self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect()
 
@@ -44,9 +30,15 @@ class Board(pygame.sprite.Group):
         for tileX in range(tilesX):
             self.tileList.append([])
             for tileY in range(tilesY):
-                if (MAP[tileY][tileX]):
-                    tile = Wall(tileX, tileY)
+                
+                if (MAP[tileY][tileX] == 1):
+                    tile = Tile(WALL_IMAGE, tileX, tileY)
+
+                elif (MAP[tileY][tileX] == 2):
+                    tile = Tile(WINDOW_IMAGE, tileX, tileY)
+
                 else:
-                    tile = Tile(tileX, tileY)
+                    tile = Tile(TILE_IMAGE, tileX, tileY)
+
                 self.tileList[tileX].append(tile)
                 self.add(tile)
