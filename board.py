@@ -1,9 +1,10 @@
 import pygame
 from gameMap import MAP
 
-TILE_IMAGE = pygame.image.load("tile.png")
-WALL_IMAGE = pygame.image.load("wall.png")
-WINDOW_IMAGE = pygame.image.load("window.png")
+TILE_IMAGE = pygame.image.load("textures/tile.png")
+WALL_IMAGE = pygame.image.load("textures/wall.png")
+WINDOW_IMAGE = pygame.image.load("textures/window.png")
+OUTER_WALL_IMAGE = pygame.image.load("textures/outerWall.png")
 
 class Tile(pygame.sprite.Sprite):
 
@@ -36,6 +37,9 @@ class Board(pygame.sprite.Group):
 
                 elif (MAP[tileY][tileX] == 2):
                     tile = Tile(WINDOW_IMAGE, tileX, tileY)
+
+                elif (MAP[tileY][tileX] == 3):
+                    tile = Tile(OUTER_WALL_IMAGE, tileX, tileY)
 
                 else:
                     tile = Tile(TILE_IMAGE, tileX, tileY)
