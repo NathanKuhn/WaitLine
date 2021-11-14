@@ -76,7 +76,3 @@ class Board(pygame.sprite.Group):
                 chair = element.Chair(x-1,y,90)
                 self.elements[y][x] = chair
                 self.add(chair)
-
-
-
- 

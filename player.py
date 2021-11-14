@@ -13,9 +13,11 @@ ANIM = [
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, x, y):
+    def __init__(self, board, x, y):
 
         super().__init__()
+
+        self.board = board
 
         self.image = PLAYER_TEXTURE_0
         self.rect = self.image.get_rect()

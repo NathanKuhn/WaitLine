@@ -13,8 +13,6 @@ def main():
 
     all_sprites_list = pygame.sprite.Group()
 
-
-
     board = Board(24, 24)
 
     board.addTable(3,4)
@@ -24,11 +22,8 @@ def main():
 
     all_sprites_list.add(board.sprites())
 
-    player = Player(1, 1)
+    player = Player(board, 1, 1)
     all_sprites_list.add(player)
-
-
-
 
     done = False
     while not done:
