@@ -1,20 +1,43 @@
 import pygame
-import player
+from player import Player
+from board import Board
+from gameMap import MAP
+
+BOARD_WIDTH = len(MAP)
 
 def main():
-    
 
-    screen = pygame.display.set_mode((500, 500))
+    pygame.init()    
+    screen = pygame.display.set_mode((BOARD_WIDTH * 32, BOARD_WIDTH * 32))
+
+    all_sprites_list = pygame.sprite.Group()
+
+    board = Board(24, 24)
+    all_sprites_list.add(board.sprites())
+
+    player = Player()
+    all_sprites_list.add(player)
 
     done = False
-
     while not done:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
 
-        screen.fill((255, 255, 255))
+        screen.fill((0, 0, 0))
+
+        if (pygame.key.get_pressed()[pygame.K_w]):
+            player.moveUp()
+        elif (pygame.key.get_pressed()[pygame.K_s]):
+            player.moveDown()
+
+        if (pygame.key.get_pressed()[pygame.K_d]):
+            player.moveRight()
+        elif (pygame.key.get_pressed()[pygame.K_a]):
+            player.moveLeft()
+
+        all_sprites_list.draw(screen)
 
         pygame.display.flip()
 
