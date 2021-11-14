@@ -15,7 +15,7 @@ def main():
     board = Board(24, 24)
     all_sprites_list.add(board.sprites())
 
-    player = Player()
+    player = Player(1, 1)
     all_sprites_list.add(player)
 
     done = False

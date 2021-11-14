@@ -26,6 +26,7 @@ class Wall(pygame.sprite.Sprite):
 
         self.image = pygame.Surface([32, 32])
         self.image.fill((0, 0, 0))
+        self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect()
 
         self.speed = 0.1
