@@ -32,7 +32,10 @@ class Player(pygame.sprite.Sprite):
         self.tickStartTime = pygame.time.get_ticks()
         self.rotation = 0
 
-        self.caffinated = False
+        if pygame.time.get_ticks() < 3000:
+            self.caffinated = True
+        else:
+            self.caffinated = False
 
     def updateStill(self):
         self.image = pygame.transform.rotate(PLAYER_TEXTURE_0, self.rotation)

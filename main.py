@@ -16,12 +16,14 @@ def main():
     all_sprites_list = pygame.sprite.Group()
 
     board = Board(24, 24)
+    print(board.deliveryLocations)
 
     for _ in range(20):
         x = random.randrange(1, BOARD_WIDTH - 1)
         y = random.randrange(1, BOARD_WIDTH - 1)
-        board.addTable(x, y)
-    
+        if (x, y) not in board.deliveryLocations and (x-1, y) not in board.deliveryLocations and (x+1, y) not in board.deliveryLocations and (x, y+1) not in board.deliveryLocations and (x, y-1) not in board.deliveryLocations:
+            board.addTable(x, y)
+
     all_sprites_list.add(board.sprites())
 
     player = Player(board, 1, 1)

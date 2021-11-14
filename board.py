@@ -6,8 +6,8 @@ TILE_IMAGE = pygame.image.load("textures/tile.png")
 WALL_IMAGE = pygame.image.load("textures/wall.png")
 WINDOW_IMAGE = pygame.image.load("textures/window.png")
 OUTER_WALL_IMAGE = pygame.image.load("textures/outerWall.png")
-HEARTH_LOGO = pygame.image.load("textures/Hearth.png")
-SWEET_BAR_LOGO = pygame.image.load("textures/sweet.png")
+DELIVERY = pygame.image.load("textures/delivery.png")
+DELIVERY_LOCATIONS = [(10, 4), (10, 14), (5, 18), (13, 18), (20, 18), (17, 10)]
 
 class Tile(pygame.sprite.Sprite):
 
@@ -18,6 +18,7 @@ class Tile(pygame.sprite.Sprite):
         self.image = image
         self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect()
+
 
         self.speed = 0.1
 
@@ -32,6 +33,9 @@ class Board(pygame.sprite.Group):
         super().__init__()
 
         self.tileList = []
+
+        self.deliveryLocations = DELIVERY_LOCATIONS
+
 
         for tileX in range(tilesX):
             self.tileList.append([])
@@ -48,6 +52,19 @@ class Board(pygame.sprite.Group):
 
                 else:
                     tile = Tile(TILE_IMAGE, tileX, tileY)
+                
+                if (tileX == 10 and tileY == 4):
+                    tile = Tile(DELIVERY, tileX, tileY)
+                elif (tileX == 10 and tileY == 14):
+                    tile = Tile(DELIVERY, tileX, tileY)
+                elif (tileX == 5 and tileY == 18):
+                    tile = Tile(DELIVERY, tileX, tileY)
+                elif (tileX == 13 and tileY == 18):
+                    tile = Tile(DELIVERY, tileX, tileY)
+                elif (tileX == 20 and tileY == 18):
+                    tile = Tile(DELIVERY, tileX, tileY)
+                elif (tileX == 17 and tileY == 10):
+                    tile = Tile(DELIVERY, tileX, tileY)
 
                 self.tileList[tileX].append(tile)
                 self.add(tile)
