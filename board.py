@@ -5,6 +5,8 @@ TILE_IMAGE = pygame.image.load("textures/tile.png")
 WALL_IMAGE = pygame.image.load("textures/wall.png")
 WINDOW_IMAGE = pygame.image.load("textures/window.png")
 OUTER_WALL_IMAGE = pygame.image.load("textures/outerWall.png")
+HEARTH_LOGO = pygame.image.load("textures/hearth.png")
+SWEET_BAR_LOGO = pygame.image.load("textures/sweet.png")
 
 class Tile(pygame.sprite.Sprite):
 
