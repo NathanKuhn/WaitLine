@@ -31,7 +31,6 @@ def main():
     all_sprites_list.add(Sign(pygame.image.load("textures/balance.png"), 550, 620, 180, 80, 0))
 
 
-
     done = False
     while not done:
 
