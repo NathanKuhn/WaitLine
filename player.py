@@ -1,5 +1,4 @@
 import pygame
-from gameMap import checkCollision
 
 PLAYER_TEXTURE_0 = pygame.image.load("textures/player0.png"); PLAYER_TEXTURE_0.set_colorkey((0,0,0))
 PLAYER_TEXTURE_1 = pygame.image.load("textures/player1.png"); PLAYER_TEXTURE_0.set_colorkey((0,0,0))
@@ -41,7 +40,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (checkCollision(self.x + 1, self.y)):
+        if (board.checkCollision(self.x + 1, self.y)):
             return
 
         if (currentTime - self.tickStartTime > 100):
@@ -55,7 +54,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (checkCollision(self.x - 1, self.y)):
+        if (board.checkCollision(self.x - 1, self.y)):
             return
 
         if (currentTime - self.tickStartTime > 100):
@@ -69,7 +68,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (checkCollision(self.x, self.y - 1)):
+        if (board.checkCollision(self.x, self.y - 1)):
             return
 
         if (currentTime - self.tickStartTime > 100):
@@ -84,7 +83,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (checkCollision(self.x, self.y + 1)):
+        if (board.checkCollision(self.x, self.y + 1)):
             return
 
         if (currentTime - self.tickStartTime > 100):
