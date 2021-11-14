@@ -1,6 +1,8 @@
 import pygame
+import player
 
 def main():
+    
 
     screen = pygame.display.set_mode((500, 500))
 
