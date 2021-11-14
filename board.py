@@ -55,23 +55,28 @@ class Board(pygame.sprite.Group):
         self.elements = [[0 for _ in range(tilesX)] for _ in range(tilesY)]
 
     def addTable(self, x, y):
+
         if MAP[y][x] == 0:
             table = element.Table(x, y)
             self.elements[y][x] = table
             print("what up")
             self.add(table)
+
             if MAP[y-1][x] == 0:
                 chair = element.Chair(x,y-1)
                 self.elements[y][x] = chair
                 self.add(chair)
+
             if MAP[y+1][x] == 0:
                 chair = element.Chair(x,y+1,180)
                 self.elements[y][x] = chair
                 self.add(chair)
+
             if MAP[y][x+1] == 0:
                 chair = element.Chair(x+1,y,270)
                 self.elements[y][x] = chair
                 self.add(chair)
+                
             if MAP[y][x-1] == 0:
                 chair = element.Chair(x-1,y,90)
                 self.elements[y][x] = chair
