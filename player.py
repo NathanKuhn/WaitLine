@@ -1,13 +1,13 @@
 import pygame
 
 PLAYER_TEXTURE_0 = pygame.image.load("textures/player0.png"); PLAYER_TEXTURE_0.set_colorkey((0,0,0))
-PLAYER_TEXTURE_1 = pygame.image.load("textures/player1.png"); PLAYER_TEXTURE_0.set_colorkey((0,0,0))
-PLAYER_TEXtURE_2 = pygame.image.load("textures/player2.png"); PLAYER_TEXTURE_0.set_colorkey((0,0,0))
+PLAYER_TEXTURE_1 = pygame.image.load("textures/player1.png"); PLAYER_TEXTURE_1.set_colorkey((0,0,0))
+PLAYER_TEXTURE_2 = pygame.image.load("textures/player2.png"); PLAYER_TEXTURE_2.set_colorkey((0,0,0))
 
 ANIM = [
     PLAYER_TEXTURE_1,
     PLAYER_TEXTURE_0,
-    PLAYER_TEXtURE_2
+    PLAYER_TEXTURE_2
 ]
 
 class Player(pygame.sprite.Sprite):
@@ -45,57 +45,56 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (self.board.checkCollision(self.x + 1, self.y, self.caffinated)):
-            return
-
         if (currentTime - self.tickStartTime > 100):
             self.x += 1
-            self.rect.x = self.x * 32
             self.tickStartTime = currentTime
             self.image = pygame.transform.rotate(ANIM[self.x % len(ANIM)], 270)
             self.rotation = 270
+
+            if (self.board.checkCollision(self.x, self.y, (1, 0), self.caffinated)):
+                self.x -= 1
+            self.rect.x = self.x * 32
 
     def moveLeft(self):
 
         currentTime = pygame.time.get_ticks()
 
-        if (self.board.checkCollision(self.x - 1, self.y, self.caffinated)):
-            return
-
         if (currentTime - self.tickStartTime > 100):
             self.x -= 1
-            self.rect.x = self.x * 32
             self.tickStartTime = currentTime
             self.image = pygame.transform.rotate(ANIM[self.x % len(ANIM)], 90)
             self.rotation = 90
 
+            if (self.board.checkCollision(self.x, self.y, (-1, 0), self.caffinated)):
+                self.x += 1
+
+            self.rect.x = self.x * 32
     def moveUp(self):
 
         currentTime = pygame.time.get_ticks()
 
-        if (self.board.checkCollision(self.x, self.y - 1, self.caffinated)):
-            return
-
         if (currentTime - self.tickStartTime > 100):
             self.y -= 1
-            self.rect.y = self.y * 32
             self.tickStartTime = currentTime
             self.image = pygame.transform.rotate(ANIM[self.y % len(ANIM)], 0)
             self.rotation = 0
+        
+            if (self.board.checkCollision(self.x, self.y, (0, -1), self.caffinated)):
+                self.y += 1
+            self.rect.y = self.y * 32
     
-
     def moveDown(self):
 
         currentTime = pygame.time.get_ticks()
 
-        if (self.board.checkCollision(self.x, self.y + 1, self.caffinated)):
-            return
-
         if (currentTime - self.tickStartTime > 100):
             self.y += 1
-            self.rect.y = self.y * 32
             self.tickStartTime = currentTime
             self.image = pygame.transform.rotate(ANIM[self.y % len(ANIM)], 180)
             self.rotation = 180
+        
+            if (self.board.checkCollision(self.x, self.y, (0, 1), self.caffinated)):
+                self.y -= 1
+            self.rect.y = self.y * 32
 
 
