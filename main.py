@@ -4,6 +4,7 @@ from player import Player
 from board import Board
 from gameMap import MAP
 import element
+from sign import Sign
 
 BOARD_WIDTH = len(MAP)
 
@@ -16,15 +17,29 @@ def main():
 
     board = Board(24, 24)
 
+<<<<<<< HEAD
     for _ in range(20):
         x = random.randrange(1, BOARD_WIDTH - 1)
         y = random.randrange(1, BOARD_WIDTH - 1)
         board.addTable(x, y)
     
+=======
+    board.addTable(3,4)
+    board.addTable(3,9)
+    board.addTable(15,3)
+
+>>>>>>> 830cbda2b95c816afda64bf31c715f6b88a93411
     all_sprites_list.add(board.sprites())
 
     player = Player(board, 1, 1)
     all_sprites_list.add(player)
+
+    all_sprites_list.add(Sign(pygame.image.load("textures/sweet.png"), 220, 170, 200, 120, 0))
+    all_sprites_list.add(Sign(pygame.image.load("textures/streats.png"), 600, 220, 200, 100, 270))
+    all_sprites_list.add(Sign(pygame.image.load("textures/Hearth.png"), 220, 340, 200, 100, 0))
+    all_sprites_list.add(Sign(pygame.image.load("textures/balance.png"), 550, 620, 180, 80, 0))
+
+
 
     done = False
     while not done:
