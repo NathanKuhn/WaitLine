@@ -13,20 +13,22 @@ def main():
 
     all_sprites_list = pygame.sprite.Group()
 
+
+
     board = Board(24, 24)
+
+    board.addTable(3,4)
+    board.addTable(3,9)
+    board.addTable(15,3)
+
+
     all_sprites_list.add(board.sprites())
 
     player = Player(1, 1)
     all_sprites_list.add(player)
 
-    chair1 = element.Chair(3, 3, 0)
-    chair2 = element.Chair(2, 4, 90)
-    chair3 = element.Chair(3, 5, 180)
-    chair4 = element.Chair(4, 4, 270)
 
-    table = element.Table(3, 4)
 
-    all_sprites_list.add(chair1, chair2, chair3, chair4, table)
 
     done = False
     while not done:
