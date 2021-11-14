@@ -40,7 +40,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (board.checkCollision(self.x + 1, self.y)):
+        if (self.board.checkCollision(self.x + 1, self.y)):
             return
 
         if (currentTime - self.tickStartTime > 100):
@@ -54,7 +54,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (board.checkCollision(self.x - 1, self.y)):
+        if (self.board.checkCollision(self.x - 1, self.y)):
             return
 
         if (currentTime - self.tickStartTime > 100):
@@ -68,7 +68,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (board.checkCollision(self.x, self.y - 1)):
+        if (self.board.checkCollision(self.x, self.y - 1)):
             return
 
         if (currentTime - self.tickStartTime > 100):
@@ -83,7 +83,7 @@ class Player(pygame.sprite.Sprite):
 
         currentTime = pygame.time.get_ticks()
 
-        if (board.checkCollision(self.x, self.y + 1)):
+        if (self.board.checkCollision(self.x, self.y + 1)):
             return
 
         if (currentTime - self.tickStartTime > 100):
