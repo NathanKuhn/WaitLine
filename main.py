@@ -1,4 +1,5 @@
 import pygame
+import random
 from player import Player
 from board import Board
 from gameMap import MAP
@@ -16,10 +17,11 @@ def main():
 
     board = Board(24, 24)
 
-    board.addTable(3,4)
-    board.addTable(3,9)
-    board.addTable(15,3)
-
+    for _ in range(20):
+        x = random.randrange(1, BOARD_WIDTH - 1)
+        y = random.randrange(1, BOARD_WIDTH - 1)
+        board.addTable(x, y)
+    
     all_sprites_list.add(board.sprites())
 
     player = Player(board, 1, 1)
@@ -29,6 +31,8 @@ def main():
     all_sprites_list.add(Sign(pygame.image.load("textures/streats.png"), 600, 220, 200, 100, 270))
     all_sprites_list.add(Sign(pygame.image.load("textures/Hearth.png"), 220, 340, 200, 100, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/balance.png"), 550, 620, 180, 80, 0))
+    all_sprites_list.add(Sign(pygame.image.load("textures/brunch.png"), 110, 630, 200, 80, 0))
+
 
 
     done = False
@@ -44,7 +48,6 @@ def main():
             player.moveUp()
         elif (pygame.key.get_pressed()[pygame.K_s]):
             player.moveDown()
-
         elif (pygame.key.get_pressed()[pygame.K_d]):
             player.moveRight()
         elif (pygame.key.get_pressed()[pygame.K_a]):
