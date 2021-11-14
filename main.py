@@ -44,6 +44,11 @@ def main():
 
         screen.fill((0, 0, 0))
 
+        if pygame.time.get_ticks() < 3000:
+            player.caffinated = True
+        else:
+            player.caffinated = False
+
         if (pygame.key.get_pressed()[pygame.K_w]):
             player.moveUp()
         elif (pygame.key.get_pressed()[pygame.K_s]):
