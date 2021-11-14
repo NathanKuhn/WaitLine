@@ -81,7 +81,40 @@ class Board(pygame.sprite.Group):
                 self.elements[y][x-1] = chair
                 self.add(chair)
 
-    def checkCollision(self, x, y, ignoreElements=False):
-       if (x < 0 or x >= len(MAP) or y < 0 or y >= len(MAP[0])):
+    def checkCollision(self, x, y, direction, moveItems=False):
+        if (x < 0 or x >= len(MAP) or y < 0 or y >= len(MAP[0])):
               return True
-       return (MAP[y][x] != 0 or (self.elements[y][x] != 0 and not ignoreElements))
+
+        if (moveItems):
+            if (self.pushElement(x, y, direction)):
+                return True
+
+        return (MAP[y][x] != 0 or (self.elements[y][x] != 0 and not moveItems))
+    
+    def pushElement(self, x, y, direction):
+
+        if (self.elements[y][x] == 0):
+            return False
+
+        xd = direction[0] + x
+        yd = direction[1] + y
+
+        if (self.elements[yd][xd] != 0):
+            if (not self.pushElement(xd, yd, direction)):
+                return True
+
+        if (self.elements[yd][xd] == 0 and MAP[yd][xd] == 0):
+            self.elements[yd][xd] = self.elements[y][x]
+            self.elements[y][x] = 0
+            self.updateElements()
+            return False
+        
+        return True
+    
+    def updateElements(self):
+
+        for y in range(len(self.elements)):
+            for x in range(len(self.elements[0])):
+                if (issubclass(type(self.elements[y][x]), element.GameElement)):
+                    self.elements[y][x].rect.x = x * 32
+                    self.elements[y][x].rect.y = y * 32
