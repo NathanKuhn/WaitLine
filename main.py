@@ -2,6 +2,7 @@ import pygame
 from player import Player
 from board import Board
 from gameMap import MAP
+import element
 
 BOARD_WIDTH = len(MAP)
 
@@ -17,6 +18,15 @@ def main():
 
     player = Player(1, 1)
     all_sprites_list.add(player)
+
+    chair1 = element.Chair(3, 3, 0)
+    chair2 = element.Chair(2, 4, 90)
+    chair3 = element.Chair(3, 5, 180)
+    chair4 = element.Chair(4, 4, 270)
+
+    table = element.Table(3, 4)
+
+    all_sprites_list.add(chair1, chair2, chair3, chair4, table)
 
     done = False
     while not done:
