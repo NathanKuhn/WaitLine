@@ -47,12 +47,12 @@ class Board(pygame.sprite.Group):
         self.deliveryLocations = DELIVERY_LOCATIONS
 
         self.foodScores = {
-            food.FoodType.ICE_CREAM : 10,
-            food.FoodType.BURRITO : 10,   
-            food.FoodType.BURGER : 10,
-            food.FoodType.NOODLES : 10,
-            food.FoodType.PIZZA : 10,
-            food.FoodType.LEAF : 10
+            food.FoodType.ICE_CREAM : 1,
+            food.FoodType.BURRITO : 1,   
+            food.FoodType.BURGER : 1,
+            food.FoodType.NOODLES : 1,
+            food.FoodType.PIZZA : 1,
+            food.FoodType.LEAF : 1
         }
 
 
