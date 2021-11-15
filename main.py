@@ -86,7 +86,8 @@ def main():
                 all_sprites_list.remove(food)
                 board.placeFoodItem(food.foodType)
 
-        for key, value in board.deliveryLocations.items()
+        for key, value in board.deliveryLocations.items():
+            pass
 
         if pygame.time.get_ticks() & 500 == 0:
             for i in range(len(players)):
