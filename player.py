@@ -99,9 +99,9 @@ class Player(pygame.sprite.Sprite):
             self.y -= 1
             self.tickStartTime = currentTime
             if self.person:
-                self.image = pygame.transform.rotate(ANIM[self.x % len(ANIM)], 0)
+                self.image = pygame.transform.rotate(ANIM[self.y % len(ANIM)], 0)
             else:
-                self.image = pygame.transform.rotate(BOTANIM[self.x % len(BOTANIM)], 0)
+                self.image = pygame.transform.rotate(BOTANIM[self.y % len(BOTANIM)], 0)
             self.rotation = 0
         
             if (self.board.checkCollision(self.x, self.y, (0, -1), self.caffinated)):
@@ -116,9 +116,9 @@ class Player(pygame.sprite.Sprite):
             self.y += 1
             self.tickStartTime = currentTime
             if self.person:
-                self.image = pygame.transform.rotate(ANIM[self.x % len(ANIM)], 180)
+                self.image = pygame.transform.rotate(ANIM[self.y % len(ANIM)], 180)
             else:
-                self.image = pygame.transform.rotate(BOTANIM[self.x % len(BOTANIM)], 180)
+                self.image = pygame.transform.rotate(BOTANIM[self.y % len(BOTANIM)], 180)
             self.rotation = 180
         
             if (self.board.checkCollision(self.x, self.y, (0, 1), self.caffinated)):
