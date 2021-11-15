@@ -113,6 +113,11 @@ def main():
             img = font.render(Board.foodScores[i], True, (0,0,0))
             screen.blit(img, (board.deliveryLocations[value][0]*32, board.deliveryLocations[value][1]*32))
 
+        font = pygame.font.SysFont(None, 40)
+        #img = font.render("Score: " score, True, (0,0,0))
+        screen.blit(img, (50, 50))
+
+
         pygame.display.flip()
 
 if __name__ == "__main__":
