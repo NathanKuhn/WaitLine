@@ -70,6 +70,24 @@ def main():
         else:
             player.updateStill()
 
+        if (pygame.key.get_pressed()[pygame.K_q]):
+            player.package = 0
+        
+        for (food, x, y) in [
+            board.burrito.getPos(),
+            board.iceCream.getPos(),
+            board.leaf.getPos(),
+            board.pizza.getPos(),
+            board.burger.getPos(),
+            board.noodles.getPos()
+        ]:
+            if (x, y) == (player.x, player.y):
+                player.package = food.foodType
+                all_sprites_list.remove(food)
+                board.placeFoodItem(food.foodType)
+
+        for key, value in board.deliveryLocations.items()
+
         if pygame.time.get_ticks() & 500 == 0:
             for i in range(len(players)):
                 p = players[i]
