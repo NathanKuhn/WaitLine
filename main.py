@@ -40,7 +40,7 @@ def main():
 
     all_sprites_list.add(board.sprites())
 
-    player = Player(board, 1, 1)
+    player = Player(board, 1, 1, True)
     all_sprites_list.add(player)
 
     players = []
@@ -48,7 +48,7 @@ def main():
         x = random.randrange(1, BOARD_WIDTH-1)
         y = random.randrange(1, BOARD_WIDTH-1)
         if MAP[y][x] == 0 and board.elements[y][x] == 0:
-            players.append(Player(board, x, y))
+            players.append(Player(board, x, y, False))
             all_sprites_list.add(players[-1])
             players[-1].caffinated = False
 
@@ -57,6 +57,8 @@ def main():
     all_sprites_list.add(Sign(pygame.image.load("textures/Hearth.png"), 220, 340, 200, 100, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/balance.png"), 550, 620, 180, 80, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/brunch.png"), 110, 630, 200, 80, 0))
+    all_sprites_list.add(Sign(pygame.image.load("textures/noodles.png"), 320, 630, 150, 60, 0))
+
 
     caffine_timer = pygame.time.get_ticks()
 
@@ -133,7 +135,7 @@ def main():
 
         font = pygame.font.SysFont(None, 40)
         img = font.render("Score: " + str(score), True, (0,0,0))
-        screen.blit(img, (50, 50))
+        screen.blit(img, (65, 5))
 
         pygame.display.flip()
 

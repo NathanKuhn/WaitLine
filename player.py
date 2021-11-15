@@ -3,6 +3,10 @@ import pygame
 PLAYER_TEXTURE_0 = pygame.image.load("textures/player0.png"); PLAYER_TEXTURE_0.set_colorkey((0,0,0))
 PLAYER_TEXTURE_1 = pygame.image.load("textures/player1.png"); PLAYER_TEXTURE_1.set_colorkey((0,0,0))
 PLAYER_TEXTURE_2 = pygame.image.load("textures/player2.png"); PLAYER_TEXTURE_2.set_colorkey((0,0,0))
+PLAYER_TEXTURE_3 = pygame.image.load("textures/character3.png"); PLAYER_TEXTURE_3.set_colorkey((0,0,0))
+PLAYER_TEXTURE_4 = pygame.image.load("textures/character4.png"); PLAYER_TEXTURE_4.set_colorkey((0,0,0))
+PLAYER_TEXTURE_5 = pygame.image.load("textures/character5.png"); PLAYER_TEXTURE_5.set_colorkey((0,0,0))
+
 
 
 ANIM = [
@@ -11,15 +15,24 @@ ANIM = [
     PLAYER_TEXTURE_2
 ]
 
+BOTANIM = [
+    PLAYER_TEXTURE_3,
+    PLAYER_TEXTURE_4,
+    PLAYER_TEXTURE_5
+    ]
+
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, board, x, y):
+    def __init__(self, board, x, y, person):
 
         super().__init__()
+        self.person = person
 
         self.board = board
-
-        self.image = PLAYER_TEXTURE_0
+        if person:
+            self.image = PLAYER_TEXTURE_0
+        else:
+            self.image = PLAYER_TEXTURE_3
         self.rect = self.image.get_rect()
 
         self.speed = 0.0005 # tiles per tick
@@ -37,8 +50,12 @@ class Player(pygame.sprite.Sprite):
 
 
     def updateStill(self):
-        self.image = pygame.transform.rotate(PLAYER_TEXTURE_0, self.rotation)
-        
+        if self.person:
+            self.image = pygame.transform.rotate(PLAYER_TEXTURE_0, self.rotation)
+        else:
+            self.image = pygame.transform.rotate(PLAYER_TEXTURE_0, self.rotation)
+
+
     def moveRight(self):
 
         currentTime = pygame.time.get_ticks()
@@ -46,7 +63,11 @@ class Player(pygame.sprite.Sprite):
         if (currentTime - self.tickStartTime > 100):
             self.x += 1
             self.tickStartTime = currentTime
-            self.image = pygame.transform.rotate(ANIM[self.x % len(ANIM)], 270)
+            if self.person:
+                self.image = pygame.transform.rotate(ANIM[self.x % len(ANIM)], 270)
+            else:
+                self.image = pygame.transform.rotate(BOTANIM[self.x % len(BOTANIM)], 270)
+
             self.rotation = 270
 
             if (self.board.checkCollision(self.x, self.y, (1, 0), self.caffinated)):
@@ -60,7 +81,10 @@ class Player(pygame.sprite.Sprite):
         if (currentTime - self.tickStartTime > 100):
             self.x -= 1
             self.tickStartTime = currentTime
-            self.image = pygame.transform.rotate(ANIM[self.x % len(ANIM)], 90)
+            if self.person:
+                self.image = pygame.transform.rotate(ANIM[self.x % len(ANIM)], 90)
+            else:
+                self.image = pygame.transform.rotate(BOTANIM[self.x % len(BOTANIM)], 90)
             self.rotation = 90
 
             if (self.board.checkCollision(self.x, self.y, (-1, 0), self.caffinated)):
@@ -74,7 +98,10 @@ class Player(pygame.sprite.Sprite):
         if (currentTime - self.tickStartTime > 100):
             self.y -= 1
             self.tickStartTime = currentTime
-            self.image = pygame.transform.rotate(ANIM[self.y % len(ANIM)], 0)
+            if self.person:
+                self.image = pygame.transform.rotate(ANIM[self.x % len(ANIM)], 0)
+            else:
+                self.image = pygame.transform.rotate(BOTANIM[self.x % len(BOTANIM)], 0)
             self.rotation = 0
         
             if (self.board.checkCollision(self.x, self.y, (0, -1), self.caffinated)):
@@ -88,7 +115,10 @@ class Player(pygame.sprite.Sprite):
         if (currentTime - self.tickStartTime > 100):
             self.y += 1
             self.tickStartTime = currentTime
-            self.image = pygame.transform.rotate(ANIM[self.y % len(ANIM)], 180)
+            if self.person:
+                self.image = pygame.transform.rotate(ANIM[self.x % len(ANIM)], 180)
+            else:
+                self.image = pygame.transform.rotate(BOTANIM[self.x % len(BOTANIM)], 180)
             self.rotation = 180
         
             if (self.board.checkCollision(self.x, self.y, (0, 1), self.caffinated)):
