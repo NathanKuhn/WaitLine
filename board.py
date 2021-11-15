@@ -42,16 +42,6 @@ class Board(pygame.sprite.Group):
     def __init__(self, tilesX, tilesY):
         super().__init__()
 
-        foodScores = {
-        food.FoodType.ICE_CREAM : 10,
-        food.FoodType.BURRITO : 10,   
-        food.FoodType.BURGER : 10,
-        food.FoodType.NOODLES : 10,
-        food.FoodType.PIZZA : 10,
-        food.FoodType.LEAF : 10
-        }
-
-
         self.tileList = []
 
         self.deliveryLocations = DELIVERY_LOCATIONS

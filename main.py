@@ -6,6 +6,8 @@ from gameMap import MAP
 import element
 from sign import Sign
 import board
+from threading import Thread
+import getData
 
 BOARD_WIDTH = len(MAP)
 
@@ -17,6 +19,18 @@ def main():
     all_sprites_list = pygame.sprite.Group()
 
     board = Board(24, 24)
+
+    done = False
+
+    def updateFoodScores():
+
+        while not done:
+            data = getData.logData()
+            for key, value in data.items():
+                board.foodScores[key] = int(data[key]) + 1
+
+    dataThread = Thread(target=updateFoodScores)
+    dataThread.start()
 
     for _ in range(20):
         x = random.randrange(1, BOARD_WIDTH - 1)
@@ -45,8 +59,6 @@ def main():
     all_sprites_list.add(Sign(pygame.image.load("textures/brunch.png"), 110, 630, 200, 80, 0))
 
     score = 0
-
-    done = False
     while not done:
 
         for event in pygame.event.get():
