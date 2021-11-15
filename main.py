@@ -38,13 +38,13 @@ def main():
             all_sprites_list.add(players[-1])
             players[-1].caffinated = False
 
-
-
     all_sprites_list.add(Sign(pygame.image.load("textures/sweet.png"), 220, 170, 200, 120, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/streats.png"), 600, 220, 200, 100, 270))
     all_sprites_list.add(Sign(pygame.image.load("textures/Hearth.png"), 220, 340, 200, 100, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/balance.png"), 550, 620, 180, 80, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/brunch.png"), 110, 630, 200, 80, 0))
+
+    score = 0
 
     done = False
     while not done:
@@ -88,7 +88,14 @@ def main():
                 board.placeFoodItem(food.foodType)
 
         for key, value in board.deliveryLocations.items():
-            pass
+            if (player.x, player.y) == value:
+                if (player.package == key):
+                    score += board.foodScores[key]
+                    player.package = 0
+        
+        print(score)
+    
+        print(player.package)
 
         if pygame.time.get_ticks() & 500 == 0:
             for i in range(len(players)):
@@ -106,10 +113,10 @@ def main():
 
         all_sprites_list.draw(screen)
 
-        for key, values in board.deliveryLocations.items():
-            font = pygame.font.SysFont(None, 25)
-            img = font.render(Board.foodScores[i], True, (0,0,0))
-            screen.blit(img, (board.deliveryLocations[key][0]*32, board.deliveryLocations[key][0]*32))
+        # for key, values in board.deliveryLocations.items():
+        #     font = pygame.font.SysFont(None, 25)
+        #     img = font.render(board.foodScores[i], True, (0,0,0))
+        #     screen.blit(img, (board.deliveryLocations[key][0]*32, board.deliveryLocations[key][0]*32))
 
         pygame.display.flip()
 

@@ -34,6 +34,7 @@ class Player(pygame.sprite.Sprite):
 
         self.package = 0
 
+
     def updateStill(self):
         self.image = pygame.transform.rotate(PLAYER_TEXTURE_0, self.rotation)
         
