@@ -92,10 +92,6 @@ def main():
                 if (player.package == key):
                     score += board.foodScores[key]
                     player.package = 0
-        
-        print(score)
-    
-        print(player.package)
 
         if pygame.time.get_ticks() & 500 == 0:
             for i in range(len(players)):
@@ -113,12 +109,12 @@ def main():
 
         all_sprites_list.draw(screen)
 
-        # for key, values in board.deliveryLocations.items():
-        #     font = pygame.font.SysFont(None, 25)
-        #     k = board.deliveryLocations[key]
+        for key, value in board.deliveryLocations.items():
+            font = pygame.font.SysFont(None, 25)
+            k = board.deliveryLocations[key]
             
-        #     img = font.render(Board.foodScores[i], True, (0,0,0))
-        #     screen.blit(img, (board.deliveryLocations[value][0]*32, board.deliveryLocations[value][1]*32))
+            img = font.render(str(board.foodScores[key]), True, (10,100,10))
+            screen.blit(img, (value[0]*32 + 6, value[1]*32 + 9))
 
         pygame.display.flip()
 
