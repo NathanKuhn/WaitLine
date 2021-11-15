@@ -45,6 +45,8 @@ def main():
     all_sprites_list.add(Sign(pygame.image.load("textures/Hearth.png"), 220, 340, 200, 100, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/balance.png"), 550, 620, 180, 80, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/brunch.png"), 110, 630, 200, 80, 0))
+    all_sprites_list.add(Sign(pygame.image.load("textures/noodles.png"), 300, 630, 200, 80, 0))
+
 
     done = False
     while not done:
@@ -113,9 +115,9 @@ def main():
             img = font.render(Board.foodScores[i], True, (0,0,0))
             screen.blit(img, (board.deliveryLocations[value][0]*32, board.deliveryLocations[value][1]*32))
 
-        font = pygame.font.SysFont(None, 40)
+        #font = pygame.font.SysFont(None, 40)
         #img = font.render("Score: " score, True, (0,0,0))
-        screen.blit(img, (50, 50))
+        #screen.blit(img, (50, 50))
 
 
         pygame.display.flip()
