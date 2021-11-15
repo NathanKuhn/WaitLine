@@ -8,7 +8,14 @@ WALL_IMAGE = pygame.image.load("textures/wall.png")
 WINDOW_IMAGE = pygame.image.load("textures/window.png")
 OUTER_WALL_IMAGE = pygame.image.load("textures/outerWall.png")
 DELIVERY = pygame.image.load("textures/delivery.png")
-DELIVERY_LOCATIONS = [(10, 4), (10, 14), (5, 18), (13, 18), (20, 18), (17, 10)]
+DELIVERY_LOCATIONS = {
+    food.FoodType.ICE_CREAM : (10, 4), 
+    food.FoodType.PIZZA : (10, 14), 
+    food.FoodType.BURRITO : (5, 18), 
+    food.FoodType.NOODLES : (13, 18), 
+    food.FoodType.LEAF : (20, 18), 
+    food.FoodType.BURGER : (17, 10)
+}
 
 foodScores = {
     food.FoodType.ICE_CREAM : "10",

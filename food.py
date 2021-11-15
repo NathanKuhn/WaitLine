@@ -38,3 +38,16 @@ class Food(pygame.sprite.Sprite):
 
         self.rect.x = x * 32
         self.rect.y = y * 32
+
+        self.x = x
+        self.y = y
+    
+    def getPos(self):
+        return (self, self.x, self.y)
+    
+    def setPos(self, x, y):
+        self.x = x
+        self.y = y
+
+        self.rect.x = x * 32
+        self.rect.y = y * 32

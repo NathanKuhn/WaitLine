@@ -21,7 +21,7 @@ def main():
     for _ in range(20):
         x = random.randrange(1, BOARD_WIDTH - 1)
         y = random.randrange(1, BOARD_WIDTH - 1)
-        if (x, y) not in board.deliveryLocations and (x-1, y) not in board.deliveryLocations and (x+1, y) not in board.deliveryLocations and (x, y+1) not in board.deliveryLocations and (x, y-1) not in board.deliveryLocations:
+        if (x, y) not in board.deliveryLocations.values() and (x-1, y) not in board.deliveryLocations.values() and (x+1, y) not in board.deliveryLocations.values() and (x, y+1) not in board.deliveryLocations.values() and (x, y-1) not in board.deliveryLocations.values():
             board.addTable(x, y)
 
     all_sprites_list.add(board.sprites())
@@ -70,6 +70,25 @@ def main():
             player.moveLeft()
         else:
             player.updateStill()
+
+        if (pygame.key.get_pressed()[pygame.K_q]):
+            player.package = 0
+        
+        for (food, x, y) in [
+            board.burrito.getPos(),
+            board.iceCream.getPos(),
+            board.leaf.getPos(),
+            board.pizza.getPos(),
+            board.burger.getPos(),
+            board.noodles.getPos()
+        ]:
+            if (x, y) == (player.x, player.y):
+                player.package = food.foodType
+                all_sprites_list.remove(food)
+                board.placeFoodItem(food.foodType)
+
+        for key, value in board.deliveryLocations.items():
+            pass
 
         if pygame.time.get_ticks() & 500 == 0:
             for i in range(len(players)):
