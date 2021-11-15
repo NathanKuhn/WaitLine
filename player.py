@@ -35,7 +35,6 @@ class Player(pygame.sprite.Sprite):
     def updateStill(self):
         self.image = pygame.transform.rotate(PLAYER_TEXTURE_0, self.rotation)
         
-    
     def moveRight(self):
 
         currentTime = pygame.time.get_ticks()
