@@ -10,14 +10,6 @@ OUTER_WALL_IMAGE = pygame.image.load("textures/outerWall.png")
 DELIVERY = pygame.image.load("textures/delivery.png")
 DELIVERY_LOCATIONS = [(10, 4), (10, 14), (5, 18), (13, 18), (20, 18), (17, 10)]
 
-foodScores = {
-    food.FoodType.ICE_CREAM : 10,
-    food.FoodType.BURRITO : 10,   
-    food.FoodType.BURGER : 10,
-    food.FoodType.NOODLES : 10,
-    food.FoodType.PIZZA : 10,
-    food.FoodType.LEAF : 10
-}
 
 class Tile(pygame.sprite.Sprite):
 
@@ -41,6 +33,16 @@ class Board(pygame.sprite.Group):
 
     def __init__(self, tilesX, tilesY):
         super().__init__()
+
+        foodScores = {
+        food.FoodType.ICE_CREAM : 10,
+        food.FoodType.BURRITO : 10,   
+        food.FoodType.BURGER : 10,
+        food.FoodType.NOODLES : 10,
+        food.FoodType.PIZZA : 10,
+        food.FoodType.LEAF : 10
+        }
+
 
         self.tileList = []
 
