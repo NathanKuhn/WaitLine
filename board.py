@@ -1,10 +1,7 @@
 import pygame
-import random
 from gameMap import MAP
 import element
 import food
-
-BOARD_WIDTH = 24
 
 TILE_IMAGE = pygame.image.load("textures/tile.png")
 WALL_IMAGE = pygame.image.load("textures/wall.png")
@@ -12,6 +9,15 @@ WINDOW_IMAGE = pygame.image.load("textures/window.png")
 OUTER_WALL_IMAGE = pygame.image.load("textures/outerWall.png")
 DELIVERY = pygame.image.load("textures/delivery.png")
 DELIVERY_LOCATIONS = [(10, 4), (10, 14), (5, 18), (13, 18), (20, 18), (17, 10)]
+
+foodScores = {
+    food.FoodType.ICE_CREAM : "10",
+    food.FoodType.BURRITO : "10",   
+    food.FoodType.BURGER : "10",
+    food.FoodType.NOODLES : "10",
+    food.FoodType.PIZZA : "10",
+    food.FoodType.LEAF : "10"
+}
 
 class Tile(pygame.sprite.Sprite):
 
@@ -23,10 +29,13 @@ class Tile(pygame.sprite.Sprite):
         self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect()
 
+
         self.speed = 0.1
 
         self.rect.x = self.image.get_width() * x
         self.rect.y = self.image.get_height() * y
+
+
 
 class Board(pygame.sprite.Group):
 
@@ -36,6 +45,7 @@ class Board(pygame.sprite.Group):
         self.tileList = []
 
         self.deliveryLocations = DELIVERY_LOCATIONS
+
 
         for tileX in range(tilesX):
             self.tileList.append([])
@@ -70,13 +80,6 @@ class Board(pygame.sprite.Group):
                 self.add(tile)
 
         self.elements = [[0 for _ in range(tilesX)] for _ in range(tilesY)]
-
-        self.burrito = self.placeFoodItem(food.FoodType.BURRITO)
-        self.iceCream = self.placeFoodItem(food.FoodType.ICE_CREAM)
-        self.leaf = self.placeFoodItem(food.FoodType.LEAF)
-        self.pizza = self.placeFoodItem(food.FoodType.PIZZA)
-        self.burger = self.placeFoodItem(food.FoodType.BURGER)
-        self.noodles = self.placeFoodItem(food.FoodType.NOODLES)
 
     def addTable(self, x, y):
 
@@ -142,19 +145,6 @@ class Board(pygame.sprite.Group):
                 if (issubclass(type(self.elements[y][x]), element.GameElement)):
                     self.elements[y][x].rect.x = x * 32
                     self.elements[y][x].rect.y = y * 32
-    
-    def placeFoodItem(self, foodType):
 
-        x = random.randrange(1, BOARD_WIDTH - 1)
-        y = random.randrange(1, BOARD_WIDTH - 1)
-
-        while True:
-            x = random.randrange(1, BOARD_WIDTH - 1)
-            y = random.randrange(1, BOARD_WIDTH - 1)
-            if (MAP[y][x] == 0 and self.elements[y][x] == 0):
-                break
-
-        out = food.Food(foodType, x, y)
-        self.add(out)
-
-        return out
+#    def displayText(self, x, y, size, text):
+        

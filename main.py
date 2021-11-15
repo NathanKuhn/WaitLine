@@ -5,6 +5,7 @@ from board import Board
 from gameMap import MAP
 import element
 from sign import Sign
+import board
 
 BOARD_WIDTH = len(MAP)
 
@@ -85,6 +86,11 @@ def main():
 
 
         all_sprites_list.draw(screen)
+
+        for key, values in board.deliveryLocations.items():
+            font = pygame.font.SysFont(None, 25)
+            img = font.render(Board.foodScores[i], True, (0,0,0))
+            screen.blit(img, (board.deliveryLocations[key][0]*32, board.deliveryLocations[key][0]*32))
 
         pygame.display.flip()
 
