@@ -115,8 +115,10 @@ def main():
 
         # for key, values in board.deliveryLocations.items():
         #     font = pygame.font.SysFont(None, 25)
-        #     img = font.render(board.foodScores[i], True, (0,0,0))
-        #     screen.blit(img, (board.deliveryLocations[key][0]*32, board.deliveryLocations[key][0]*32))
+        #     k = board.deliveryLocations[key]
+            
+        #     img = font.render(Board.foodScores[i], True, (0,0,0))
+        #     screen.blit(img, (board.deliveryLocations[value][0]*32, board.deliveryLocations[value][1]*32))
 
         pygame.display.flip()
 

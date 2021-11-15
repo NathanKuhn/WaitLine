@@ -19,6 +19,7 @@ DELIVERY_LOCATIONS = {
     food.FoodType.LEAF : (20, 18), 
     food.FoodType.BURGER : (17, 10)
 }
+
 class Tile(pygame.sprite.Sprite):
 
     def __init__(self, image, x, y):
@@ -28,7 +29,6 @@ class Tile(pygame.sprite.Sprite):
         self.image = image
         self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect()
-
 
         self.speed = 0.1
 
@@ -47,12 +47,12 @@ class Board(pygame.sprite.Group):
         self.deliveryLocations = DELIVERY_LOCATIONS
 
         self.foodScores = {
-            food.FoodType.ICE_CREAM : "10",
-            food.FoodType.BURRITO : "10",   
-            food.FoodType.BURGER : "10",
-            food.FoodType.NOODLES : "10",
-            food.FoodType.PIZZA : "10",
-            food.FoodType.LEAF : "10"
+            food.FoodType.ICE_CREAM : 10,
+            food.FoodType.BURRITO : 10,   
+            food.FoodType.BURGER : 10,
+            food.FoodType.NOODLES : 10,
+            food.FoodType.PIZZA : 10,
+            food.FoodType.LEAF : 10
         }
 
 
