@@ -16,7 +16,6 @@ def main():
     all_sprites_list = pygame.sprite.Group()
 
     board = Board(24, 24)
-    print(board.deliveryLocations)
 
     for _ in range(20):
         x = random.randrange(1, BOARD_WIDTH - 1)
@@ -28,6 +27,17 @@ def main():
 
     player = Player(board, 1, 1)
     all_sprites_list.add(player)
+
+    players = []
+    for i in range(10):
+        x = random.randrange(1, BOARD_WIDTH-1)
+        y = random.randrange(1, BOARD_WIDTH-1)
+        if MAP[y][x] == 0 and board.elements[y][x] == 0:
+            players.append(Player(board, x, y))
+            all_sprites_list.add(players[-1])
+            players[-1].caffinated = False
+
+
 
     all_sprites_list.add(Sign(pygame.image.load("textures/sweet.png"), 220, 170, 200, 120, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/streats.png"), 600, 220, 200, 100, 270))
@@ -59,6 +69,20 @@ def main():
             player.moveLeft()
         else:
             player.updateStill()
+
+        if pygame.time.get_ticks() & 500 == 0:
+            for i in range(len(players)):
+                p = players[i]
+                j = random.randrange(0,4)
+                if j==0:
+                    p.moveUp()
+                elif j==1:
+                    p.moveDown()
+                elif j==2:
+                    p.moveLeft()
+                else:
+                    p.moveRight()
+
 
         all_sprites_list.draw(screen)
 
