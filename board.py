@@ -98,6 +98,9 @@ class Board(pygame.sprite.Group):
         self.burger = self.placeFoodItem(food.FoodType.BURGER)
         self.noodles = self.placeFoodItem(food.FoodType.NOODLES)
 
+    def placeAllFoodItems(self):
+        self.burrito.x
+
     def addTable(self, x, y):
 
         if MAP[y][x] == 0 and self.elements[y][x] == 0:
@@ -178,4 +181,27 @@ class Board(pygame.sprite.Group):
         self.add(out)
 
         return out
+
+    def changeFoodItem(self, food):
+        x = random.randrange(1, BOARD_WIDTH - 1)
+        y = random.randrange(1, BOARD_WIDTH - 1)
+
+        while True:
+            x = random.randrange(1, BOARD_WIDTH - 1)
+            y = random.randrange(1, BOARD_WIDTH - 1)
+            if (MAP[y][x] == 0 and self.elements[y][x] == 0):
+                break
+                
+        food.setPos(x, y)
+    
+    def changeAllFoods(self):
+        self.changeFoodItem(self.burrito)
+        self.changeFoodItem(self.iceCream)
+        self.changeFoodItem(self.leaf)
+        self.changeFoodItem(self.pizza)
+        self.changeFoodItem(self.burger)
+        self.changeFoodItem(self.noodles)
+    
+    
+
         
