@@ -4,6 +4,7 @@ PLAYER_TEXTURE_0 = pygame.image.load("textures/player0.png"); PLAYER_TEXTURE_0.s
 PLAYER_TEXTURE_1 = pygame.image.load("textures/player1.png"); PLAYER_TEXTURE_1.set_colorkey((0,0,0))
 PLAYER_TEXTURE_2 = pygame.image.load("textures/player2.png"); PLAYER_TEXTURE_2.set_colorkey((0,0,0))
 
+
 ANIM = [
     PLAYER_TEXTURE_1,
     PLAYER_TEXTURE_0,
