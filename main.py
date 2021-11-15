@@ -100,13 +100,14 @@ def main():
         ]:
             if (x, y) == (player.x, player.y):
                 player.package = food.foodType
-                all_sprites_list.remove(food)
+                food.setPos(25, 25)
                 board.placeFoodItem(food.foodType)
 
         for key, value in board.deliveryLocations.items():
             if (player.x, player.y) == value:
                 if (player.package == key):
                     score += board.foodScores[key]
+                    board.changeAllFoods()
                     player.package = 0
 
         if pygame.time.get_ticks() & 500 == 0:
@@ -122,7 +123,6 @@ def main():
                 else:
                     p.moveRight()
 
-
         all_sprites_list.draw(screen)
 
         for key, value in board.deliveryLocations.items():
@@ -135,9 +135,6 @@ def main():
         font = pygame.font.SysFont(None, 40)
         img = font.render("Score: " + str(score), True, (0,0,0))
         screen.blit(img, (65, 5))
-
-        print(score)
-
 
         pygame.display.flip()
 

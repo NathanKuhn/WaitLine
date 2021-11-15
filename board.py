@@ -47,12 +47,12 @@ class Board(pygame.sprite.Group):
         self.deliveryLocations = DELIVERY_LOCATIONS
 
         self.foodScores = {
-            food.FoodType.ICE_CREAM : 10,
-            food.FoodType.BURRITO : 10,   
-            food.FoodType.BURGER : 10,
-            food.FoodType.NOODLES : 10,
-            food.FoodType.PIZZA : 10,
-            food.FoodType.LEAF : 10
+            food.FoodType.ICE_CREAM : 1,
+            food.FoodType.BURRITO : 1,   
+            food.FoodType.BURGER : 1,
+            food.FoodType.NOODLES : 1,
+            food.FoodType.PIZZA : 1,
+            food.FoodType.LEAF : 1
         }
 
 
@@ -97,6 +97,9 @@ class Board(pygame.sprite.Group):
         self.pizza = self.placeFoodItem(food.FoodType.PIZZA)
         self.burger = self.placeFoodItem(food.FoodType.BURGER)
         self.noodles = self.placeFoodItem(food.FoodType.NOODLES)
+
+    def placeAllFoodItems(self):
+        self.burrito.x
 
     def addTable(self, x, y):
 
@@ -178,4 +181,27 @@ class Board(pygame.sprite.Group):
         self.add(out)
 
         return out
+
+    def changeFoodItem(self, food):
+        x = random.randrange(1, BOARD_WIDTH - 1)
+        y = random.randrange(1, BOARD_WIDTH - 1)
+
+        while True:
+            x = random.randrange(1, BOARD_WIDTH - 1)
+            y = random.randrange(1, BOARD_WIDTH - 1)
+            if (MAP[y][x] == 0 and self.elements[y][x] == 0):
+                break
+                
+        food.setPos(x, y)
+    
+    def changeAllFoods(self):
+        self.changeFoodItem(self.burrito)
+        self.changeFoodItem(self.iceCream)
+        self.changeFoodItem(self.leaf)
+        self.changeFoodItem(self.pizza)
+        self.changeFoodItem(self.burger)
+        self.changeFoodItem(self.noodles)
+    
+    
+
         
