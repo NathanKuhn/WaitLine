@@ -52,13 +52,13 @@ def main():
             all_sprites_list.add(players[-1])
             players[-1].caffinated = False
 
-
-
     all_sprites_list.add(Sign(pygame.image.load("textures/sweet.png"), 220, 170, 200, 120, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/streats.png"), 600, 220, 200, 100, 270))
     all_sprites_list.add(Sign(pygame.image.load("textures/Hearth.png"), 220, 340, 200, 100, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/balance.png"), 550, 620, 180, 80, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/brunch.png"), 110, 630, 200, 80, 0))
+
+    caffine_timer = pygame.time.get_ticks()
 
     score = 0
     while not done:
@@ -69,7 +69,7 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        if pygame.time.get_ticks() < 3000:
+        if pygame.time.get_ticks() < caffine_timer + 3000:
             player.caffinated = True
         else:
             player.caffinated = False
@@ -105,6 +105,7 @@ def main():
             if (player.x, player.y) == value:
                 if (player.package == key):
                     score += board.foodScores[key]
+                    caffine_timer = pygame.time.get_ticks()
                     board.changeAllFoods()
                     player.package = 0
 
