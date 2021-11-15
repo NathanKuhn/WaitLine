@@ -3,16 +3,17 @@ import lxml.html
 import json
 import datetime as dt
 import time
+from food import FoodType
 
 URL = "https://www.tapingo.com/order/campus/cpsl/pickup/"
 
 REL_DICT = {
-    "streats" : "streats-vista-grande-dining-complex",
-    "brunch" : "brunch",
-    "hearth" : "hearth-cpsl",
-    "balance" : "balance-cafe-vista-grande-dining-complex",
-    "noodles" : "noodles-california-polytechnic-san-luis-obispo",
-    "sweet bar" : "sweet-bar-california-polytechnic-university-cal-poly-slo"
+    FoodType.BURGER : "streats-vista-grande-dining-complex",
+    FoodType.BURRITO : "brunch",
+    FoodType.PIZZA : "hearth-cpsl",
+    FoodType.LEAF : "balance-cafe-vista-grande-dining-complex",
+    FoodType.NOODLES : "noodles-california-polytechnic-san-luis-obispo",
+    FoodType.ICE_CREAM : "sweet-bar-california-polytechnic-university-cal-poly-slo"
 }
 
 def getWaitTime(rel):
@@ -30,5 +31,3 @@ def logData():
     now = str(dt.datetime.now())
 
     return data
-
-print(logData())

@@ -6,6 +6,8 @@ from gameMap import MAP
 import element
 from sign import Sign
 import board
+from threading import Thread
+import getData
 
 BOARD_WIDTH = len(MAP)
 
@@ -18,6 +20,18 @@ def main():
 
     board = Board(24, 24)
 
+    done = False
+
+    def updateFoodScores():
+
+        while not done:
+            data = getData.logData()
+            for key, value in data.items():
+                board.foodScores[key] = int(data[key]) + 1
+
+    dataThread = Thread(target=updateFoodScores)
+    dataThread.start()
+
     for _ in range(20):
         x = random.randrange(1, BOARD_WIDTH - 1)
         y = random.randrange(1, BOARD_WIDTH - 1)
@@ -26,7 +40,7 @@ def main():
 
     all_sprites_list.add(board.sprites())
 
-    player = Player(board, 1, 1)
+    player = Player(board, 1, 1, True)
     all_sprites_list.add(player)
 
     players = []
@@ -34,7 +48,7 @@ def main():
         x = random.randrange(1, BOARD_WIDTH-1)
         y = random.randrange(1, BOARD_WIDTH-1)
         if MAP[y][x] == 0 and board.elements[y][x] == 0:
-            players.append(Player(board, x, y))
+            players.append(Player(board, x, y, False))
             all_sprites_list.add(players[-1])
             players[-1].caffinated = False
 
@@ -45,10 +59,10 @@ def main():
     all_sprites_list.add(Sign(pygame.image.load("textures/Hearth.png"), 220, 340, 200, 100, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/balance.png"), 550, 620, 180, 80, 0))
     all_sprites_list.add(Sign(pygame.image.load("textures/brunch.png"), 110, 630, 200, 80, 0))
-    all_sprites_list.add(Sign(pygame.image.load("textures/noodles.png"), 300, 630, 200, 80, 0))
+    all_sprites_list.add(Sign(pygame.image.load("textures/noodles.png"), 320, 630, 150, 60, 0))
 
 
-    done = False
+    score = 0
     while not done:
 
         for event in pygame.event.get():
@@ -90,7 +104,10 @@ def main():
                 board.placeFoodItem(food.foodType)
 
         for key, value in board.deliveryLocations.items():
-            pass
+            if (player.x, player.y) == value:
+                if (player.package == key):
+                    score += board.foodScores[key]
+                    player.package = 0
 
         if pygame.time.get_ticks() & 500 == 0:
             for i in range(len(players)):
@@ -108,16 +125,18 @@ def main():
 
         all_sprites_list.draw(screen)
 
-        for key, values in board.deliveryLocations.items():
+        for key, value in board.deliveryLocations.items():
             font = pygame.font.SysFont(None, 25)
             k = board.deliveryLocations[key]
             
-            img = font.render(Board.foodScores[i], True, (0,0,0))
-            screen.blit(img, (board.deliveryLocations[value][0]*32, board.deliveryLocations[value][1]*32))
+            img = font.render(str(board.foodScores[key]), True, (10,100,10))
+            screen.blit(img, (value[0]*32 + 6, value[1]*32 + 9))
 
-        #font = pygame.font.SysFont(None, 40)
-        #img = font.render("Score: " score, True, (0,0,0))
-        #screen.blit(img, (50, 50))
+        font = pygame.font.SysFont(None, 40)
+        img = font.render("Score: " + str(score), True, (0,0,0))
+        screen.blit(img, (65, 5))
+
+        print(score)
 
 
         pygame.display.flip()
